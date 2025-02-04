@@ -1,0 +1,85 @@
+site_name: skylog-sdk
+repo_url: https://github.com/vahidtwo/skylog-sdk
+site_url: https://vahidtwo.github.io/skylog-sdk
+site_description: This is a template repository for Python projects that use Poetry for their dependency management.
+site_author: vahidtwo
+edit_uri: edit/main/docs/
+repo_name: vahidtwo/skylog-sdk
+copyright: Maintained by <a href="https://vahidtwo.com">Florian</a>.
+
+nav:
+  - Home: index.md
+plugins:
+  search: null
+  mkdocstrings:
+    handlers:
+      python:
+        options:
+          extensions:
+            - griffe_typingdoc
+          show_root_heading: true
+          show_if_no_docstring: true
+          preload_modules: [httpx, starlette]
+          inherited_members: true
+          members_order: source
+          separate_signature: true
+          unwrap_annotated: true
+          filters: ["!^_"]
+          merge_init_into_class: true
+          docstring_section_style: spacy
+          signature_crossrefs: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  features:
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - navigation.indexes
+    - content.tooltips
+    - navigation.path
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - navigation.tabs
+  icon:
+    repo: fontawesome/brands/github-alt
+  language: en
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/vahidtwo/skylog-sdk
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/skylog-sdk
+  analytics:
+    provider: google
+
+markdown_extensions:
+  - pymdownx.arithmatex
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition: null
+  - pymdownx.blocks.html
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
