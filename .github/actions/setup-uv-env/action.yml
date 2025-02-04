@@ -1,0 +1,33 @@
+name: "setup-uv-env"
+description: "Composite action to setup the Python and uv environment."
+
+inputs:
+  python-version:
+    required: false
+    description: "The Python version to use."
+    default: "3.8"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v1
+      with:
+        virtualenvs-in-project: true
+
+    - name: Set up Python environment with uv
+      run: uv venv
+      shell: bash
+
+    - name: Install the project
+      run: uv pip install -e .[all,dev]
+      shell: bash
+
+    - name: Run tests
+      run: uv run pytest tests
+      shell: bash

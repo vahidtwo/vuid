@@ -1,49 +1,50 @@
 .PHONY: install
-install: ## Install the poetry environment and install the pre-commit hooks
-	@echo "🚀 Creating virtual environment using pyenv and poetry"
-	@poetry install
-	@poetry run pre-commit install
-	@poetry shell
+install: ## Install the environment using uv and install the pre-commit hooks
+	@echo "🚀 Creating virtual environment using uv"
+	@uv venv
+	@uv pip install -r requirements.txt
+	@uv pip install pre-commit
+	@pre-commit install
+	@echo "🚀 Virtual environment ready. Activate it using 'source .venv/bin/activate'"
 
 .PHONY: check
 check: ## Run code quality tools.
-	@echo "🚀 Checking Poetry lock file consistency with 'pyproject.toml': Running poetry lock --check"
-	@poetry check --lock
 	@echo "🚀 Linting code: Running pre-commit"
-	@poetry run pre-commit run -a
+	@pre-commit run -a
 
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-	@poetry run pytest --cov --cov-config=pyproject.toml --cov-report=xml
+	@uv run pytest --cov --cov-config=pyproject.toml --cov-report=xml
 
 .PHONY: build
-build: clean-build ## Build wheel file using poetry
+build: clean-build ## Build wheel file using uv
 	@echo "🚀 Creating wheel file"
-	@poetry build
+	@uv pip install build
+	@python -m build
 
 .PHONY: clean-build
-clean-build: ## clean build artifacts
+clean-build: ## Clean build artifacts
 	@rm -rf dist
 
 .PHONY: publish
-publish: ## publish a release to pypi.
+publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config pypi-token.pypi $(PYPI_TOKEN)
-	@poetry publish --dry-run
+	@uv pip install twine
+	@python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 	@echo "🚀 Publishing."
-	@poetry publish
+	@python -m twine upload dist/*
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@poetry run mkdocs build -s
+	@uv run mkdocs build -s
 
 .PHONY: docs
 docs: ## Build and serve the documentation
-	@poetry run mkdocs serve -a localhost:9090
+	@uv run mkdocs serve -a localhost:9090
 
 .PHONY: help
 help:
