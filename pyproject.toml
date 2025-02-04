@@ -1,0 +1,62 @@
+[project]
+name = "vuid"
+version = "0.1.1"
+description = "Vahid Unique ID Generator"
+readme = "README.md"
+repository = "https://github.com/vahidtwo/vuid"
+documentation = "https://vahidtwo.github.io/vuid/"
+requires-python = ">=3.8"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+packages = [
+  {include = "vuid"}
+]
+
+[dependency-groups]
+dev = [
+    "black>=24.8.0",
+    "pytest>=8.3.4",
+    "pre-commit=^3.4.0",
+]
+
+[[tool.uv.index]]
+name = "uvid"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+
+
+[tool.poetry]
+name = "vuid"
+version = "0.1.1"
+description = "Vahid Unique ID Generator"
+authors = ["vahidtwo <vahidtwo@gmail.com>"]
+repository = "https://github.com/vahidtwo/vuid"
+documentation = "https://vahidtwo.github.io/vuid/"
+readme = "README.md"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.4.0"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.4.2"
+mkdocs-material = "^9.2.7"
+mkdocstrings = { extras = ["python"], version = "^0.23.0" }
+
+[tool.black]
+line-length = 121
+target-version = ['py38']
+preview = true
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["vuid"]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
