@@ -11,7 +11,7 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)
 [![License](https://img.shields.io/github/license/vahidtwo/vuid)](https://img.shields.io/github/license/vahidtwo/vuid)
 
-The **VUID ** is a Python package designed to generate vahid unique identifiers (VUIDs) based on a custom epoch time
+The **VUID** is a Python package designed to generate vahid unique identifiers (VUIDs) based on a custom epoch time
 and a base-62 encoding scheme. The package provides a simple and efficient way to create unique IDs that can be used in
 various applications, such as database keys, distributed systems, or any scenario where uniqueness is critical.
 
@@ -30,7 +30,7 @@ various applications, such as database keys, distributed systems, or any scenari
 To install the package, use pip:
 
 ```bash
-pip install vuid-generator
+pip install vuid
 ```
 
 ## Usage
@@ -84,7 +84,7 @@ print(vuid1 < vuid2)  # True or False, depending on the timestamps
 
 ## API Reference
 
-### `VUID(timestamp: float)`
+### `VUID(timestamp: int)`
 
 - **Parameters**:
 	- `timestamp`: A timestamp (in seconds) used to generate the VUID.
@@ -123,8 +123,8 @@ print(vuid1 < vuid2)  # True or False, depending on the timestamps
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request on
-the [GitHub repository](https://github.com/vahidtwo/vuid-generator).
+the [GitHub repository](https://github.com/vahidtwo/vuid).
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the BEER-WARE License. See the [LICENSE](LICENSE) file for details.
