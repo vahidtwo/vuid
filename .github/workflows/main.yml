@@ -6,7 +6,9 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-
+permissions:
+  id-token: write
+  contents: read
 jobs:
   quality:
     runs-on: ubuntu-latest
