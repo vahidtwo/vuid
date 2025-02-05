@@ -33,6 +33,7 @@ clean-build: ## Clean build artifacts
 .PHONY: publish
 publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing."
+	@uvx --from publish pyproject-build --installer uv
 	@uvx twine upload  dist/* -p $PIPY_TOKEN
 
 .PHONY: build-and-publish
