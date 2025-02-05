@@ -34,8 +34,13 @@ source = ["vuid"]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
-[dependency-groups.dev]
-dependencies = [
+[dependency-groups]
+dev = [
+    "black>=24.8.0",
+    "flake8>=5.0.4",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.2",
+    "pytest>=8.3.4",
 ]
+
+
