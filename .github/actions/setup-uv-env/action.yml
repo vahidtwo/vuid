@@ -26,5 +26,5 @@ runs:
       shell: bash
 
     - name: Run tests
-      run: uv tooم run pytest vuid/tests.py
+      run: uv tool run pytest vuid/tests.py
       shell: bash
