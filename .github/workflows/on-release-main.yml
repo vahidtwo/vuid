@@ -28,7 +28,6 @@ jobs:
           make build-and-publish
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-          TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   deploy-docs:
     needs: publish
