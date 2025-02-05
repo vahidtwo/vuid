@@ -6,9 +6,6 @@ inputs:
     required: false
     description: "The Python version to use."
     default: "3.8"
-permissions:
-  id-token: write
-  contents: read
 runs:
   using: "composite"
   steps:
