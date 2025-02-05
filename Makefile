@@ -30,10 +30,7 @@ clean-build: ## Clean build artifacts
 .PHONY: publish
 publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing: Dry run."
-	@uv pip install twine
-	@python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-	@echo "🚀 Publishing."
-	@python -m twine upload dist/*
+	@uv publish --token $PIPY_TOKEN
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
