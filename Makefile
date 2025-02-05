@@ -33,7 +33,7 @@ clean-build: ## Clean build artifacts
 .PHONY: publish
 publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing."
-	@echo $TWINE_PASSWORD
+	@echo "secret is ${{TWINE_PASSWORD}}"
 	@uvx twine upload  dist/*
 
 .PHONY: build-and-publish

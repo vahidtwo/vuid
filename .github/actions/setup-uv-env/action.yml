@@ -22,9 +22,6 @@ runs:
     - name: Set up Python environment with uv
       run: uv venv
       shell: bash
-    - name : ls
-      run: ls -ltrha
-      shell: bash
 
     - name: Install the project
       run: uv sync --extra dev
