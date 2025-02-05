@@ -20,8 +20,7 @@ test: ## Test the code with pytest
 .PHONY: build
 build: clean-build ## Build wheel file using uv
 	@echo "🚀 Creating wheel file"
-	@uv pip install build
-	@python -m build
+	@uv build
 
 .PHONY: clean-build
 clean-build: ## Clean build artifacts
