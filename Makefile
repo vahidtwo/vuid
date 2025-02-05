@@ -33,8 +33,8 @@ clean-build: ## Clean build artifacts
 .PHONY: publish
 publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing."
-	@uvx twine upload  dist/*
-	
+	@twine upload  dist/*
+
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.
 
