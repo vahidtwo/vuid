@@ -29,5 +29,5 @@ runs:
       shell: bash
 
     - name: Run tests
-      run: uv tools pytest tests
+      run: uv tool pytest tests
       shell: bash
