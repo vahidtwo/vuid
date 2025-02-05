@@ -16,8 +16,6 @@ runs:
 
     - name: Install uv
       uses: astral-sh/setup-uv@v1
-      with:
-        virtualenvs-in-project: true
 
     - name: Set up Python environment with uv
       run: uv venv
@@ -28,5 +26,5 @@ runs:
       shell: bash
 
     - name: Run tests
-      run: uv tool run pytest vuid/tests.py
+      run: uv tooم run pytest vuid/tests.py
       shell: bash
