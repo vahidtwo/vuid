@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from vuid import VUID, START_EPOC_TIME, generate_vuid, _saturate, _dehydrate
+from .vuid import VUID, START_EPOC_TIME, generate_vuid, _saturate, _dehydrate
 
 # Test data
 TEST_TIMESTAMP = datetime.now().timestamp()
