@@ -3,12 +3,9 @@ name: Main
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
-permissions:
-  id-token: write
-  contents: read
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -37,4 +34,4 @@ jobs:
         uses: ./.github/actions/setup-uv-env
 
       - name: Check if documentation can be built
-        run: uv run mkdocs build -s
+        run: make docs-test

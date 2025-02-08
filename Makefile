@@ -1,7 +1,8 @@
 .PHONY: install
 install: ## Install the virtual environment and install the pre-commit hooks
 	@echo "🚀 Creating virtual environment using uv"
-	@uv sync
+	@uv venv
+	@uv sync --all-extras
 	@uv run pre-commit install
 
 .PHONY: check
@@ -11,14 +12,14 @@ check: ## Run code quality tools.
 	@echo "🚀 Linting code: Running pre-commit"
 	@uv run pre-commit run -a
 	@echo "🚀 Static type checking: Running mypy"
-	@uv run mypy
+	@uv run mypy .
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@uv run deptry .
 
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml
+	@uvx pytest tests
 
 .PHONY: build
 build: clean-build ## Build wheel file
@@ -44,11 +45,11 @@ docs-test: ## Test if documentation can be built without warnings or errors
 
 .PHONY: docs
 docs: ## Build and serve the documentation
-	@uv run mkdocs serve
+	@mkdocs serve
 
 .PHONY: deploy-doc
 deploy-docs: ## Build and serve the documentation
-	@uvx mkdocs gh-deploy --force
+	@mkdocs gh-deploy --force
 
 .PHONY: help
 help:

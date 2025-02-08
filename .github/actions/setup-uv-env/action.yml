@@ -20,13 +20,9 @@ runs:
         virtualenvs-in-project: true
 
     - name: Set up Python environment with uv
-      run: uv venv
-      shell: bash
-
-    - name: Install the project
-      run: uv sync --extra dev
+      run: make install
       shell: bash
 
     - name: Run tests
-      run: uv tool run pytest vuid/tests.py
+      run: make test
       shell: bash

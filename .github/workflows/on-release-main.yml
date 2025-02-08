@@ -44,4 +44,6 @@ jobs:
         uses: ./.github/actions/setup-uv-env
 
       - name: Deploy documentation
-        run: make deploy-docs
+        run: |
+          source .venv/bin/activate
+          make deploy-docs
