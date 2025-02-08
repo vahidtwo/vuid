@@ -12,7 +12,7 @@ check: ## Run code quality tools.
 	@echo "🚀 Linting code: Running pre-commit"
 	@uvx pre-commit run -a
 	@echo "🚀 Static type checking: Running mypy"
-	@uv run mypy .
+	@uvx mypy vuid/
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@uv run deptry .
 
