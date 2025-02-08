@@ -4,7 +4,7 @@
 }
 </style>
 
-# VUID  Package
+# VUID Package
 
 [![Release](https://img.shields.io/github/v/release/vahidtwo/vuid)](https://img.shields.io/github/v/release/vahidtwo/vuid)
 [![Build status](https://img.shields.io/github/actions/workflow/status/vahidtwo/vuid/main.yml?branch=master)](https://github.com/vahidtwo/vuid/actions/workflows/main.yml?query=branch%3Amaster)
@@ -67,7 +67,7 @@ If you already have a VUID code, you can create a `VUID` object from it:
 existing_code = "1A2b3C4d5"
 vuid = VUID.from_code(existing_code)
 
-print(vuid)  # Output: "1A2b3C4d5"
+print(vuid.created_time)  # Output: "2025-07-22 05:24:09"
 ```
 
 ### Comparing VUIDs
@@ -84,16 +84,17 @@ print(vuid1 < vuid2)  # True or False, depending on the timestamps
 
 ## API Reference
 
-### `VUID(timestamp: int)`
+### `VUID(timestamp: int, *, prefix: str = "")`
 
 - **Parameters**:
-	- `timestamp`: A timestamp (in seconds) used to generate the VUID.
+  - `timestamp`: A timestamp (in seconds) used to generate the VUID.
+  - `prefix`: A string used to add as prefix in the VUID.
 - **Returns**: A `VUID` object.
 
 ### `VUID.from_code(code: str)`
 
 - **Parameters**:
-	- `code`: An existing VUID code.
+  - `code`: An existing VUID code.
 - **Returns**: A `VUID` object.
 
 ### Properties
