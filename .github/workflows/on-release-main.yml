@@ -4,11 +4,10 @@ on:
   workflow_dispatch:
   release:
     types: [published]
-    branches: [master]
+    branches: [main]
 jobs:
   publish:
     runs-on: ubuntu-latest
-    # publish jobs get escalated permissions
     permissions:
       "id-token": "write"
       "packages": "write"

@@ -15,7 +15,6 @@ on:
 
 jobs:
   deploy-docs:
-    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
