@@ -1,0 +1,5 @@
+.pdm-build/
+.venv/
+venv/
+dist/
+.idea
