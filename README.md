@@ -4,7 +4,9 @@
 [![Build status](https://img.shields.io/github/actions/workflow/status/vahidtwo/vuid/main.yml?branch=master)](https://github.com/vahidtwo/vuid/actions/workflows/main.yml?query=branch%3Amaster)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)
 [![License](https://img.shields.io/github/license/vahidtwo/vuid)](https://img.shields.io/github/license/vahidtwo/vuid)
-
+- **Github repository**: <https://github.com/vahidtwo/vuid/>
+- **Documentation** <https://vahidtwo.github.io/vuid/>
+- **PIPY Package** <https://pypi.org/project/vuid/>
 The **VUID** is a Python package designed to generate vahid unique identifiers (VUIDs) based on a custom epoch time
 and a base-62 encoding scheme. The package provides a simple and efficient way to create unique IDs that can be used in
 various applications, such as database keys, distributed systems, or any scenario where uniqueness is critical.
