@@ -112,7 +112,7 @@ class VUID:
         return f"{self.prefix}{self.code}"
 
     def __repr__(self) -> str:
-        return f"VUID({self.prefix}{self.code})"
+        return f"VUID(\"{self.prefix}{self.code}\")"
 
     def __eq__(self, other) -> bool:
         return self.code == other.code
@@ -143,8 +143,8 @@ class VUID:
 
     @classmethod
     def from_code(cls, code: str) -> "VUID":
-        if len(code) != 9:
-            raise ValueError("code must be 9 characters")
+        if len(code) <= 9:
+            raise ValueError("code must be gte 9 characters")
         obj = cls.__new__(cls)
         obj.code = code[-9:]
         obj.prefix = code[:-9]
