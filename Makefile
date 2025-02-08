@@ -4,7 +4,7 @@ install: ## Install the virtual environment and install the pre-commit hooks
 	@uv venv
 	@echo "🚀 installing dependencies"
 	@uv sync --all-extras
-	@source .venv/bin/activate
+
 
 .PHONY: check
 check: ## Run code quality tools.
@@ -43,15 +43,15 @@ build-and-publish: build publish ## Build and publish.
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@mkdocs build -s
+	@uv run mkdocs build -s
 
 .PHONY: docs
 docs: ## Build and serve the documentation
-	@mkdocs serve
+	@uv run mkdocs serve
 
 .PHONY: deploy-docs
 deploy-docs: ## Build and serve the documentation
-	@mkdocs gh-deploy --force
+	@uv run mkdocs gh-deploy --force
 
 .PHONY: help
 help:
