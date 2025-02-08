@@ -1,6 +1,7 @@
 import datetime
 import logging
 import random
+from typing import TypeVar
 import math
 
 CHARSET_DEFAULT = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -9,6 +10,8 @@ logger = logging.getLogger(__name__)
 UPPERCASE_OFFSET = 55
 LOWERCASE_OFFSET = 61
 DIGIT_OFFSET = 48
+
+TimeStamp = TypeVar("TimeStamp", int, float)
 
 
 def _true_ord(char):
@@ -39,12 +42,10 @@ def _true_chr(integer, base: int = 62):
     elif 36 <= integer < 62:
         return chr(integer + LOWERCASE_OFFSET)
     else:
-        raise ValueError(
-            "%d is not a valid integer in the range of base %d" % (integer, base)
-        )
+        raise ValueError("%d is not a valid integer in the range of base %d" % (integer, base))
 
 
-def _saturate(key, base: int = 62):
+def _saturate(key, base: int = 62) -> int:
     """
     Turn the base [base] number [key] into an integer
     """
@@ -55,7 +56,7 @@ def _saturate(key, base: int = 62):
     return int_sum
 
 
-def _dehydrate(integer, base: int = 62):
+def _dehydrate(integer, base: int = 62) -> str:
     """
     Turn an integer [integer] into a base [BASE] number
     in string representation
@@ -71,7 +72,7 @@ def _dehydrate(integer, base: int = 62):
     return string
 
 
-def generate_vuid(timestamp: datetime.datetime.timestamp) -> str:
+def generate_vuid(timestamp: TimeStamp) -> str:
     """
     generate vahid unique id that's can consider it as a unique field
     we use timestamp that decrease from  {START_EPOC_TIME}
@@ -100,9 +101,7 @@ def generate_vuid(timestamp: datetime.datetime.timestamp) -> str:
 
 
 class VUID:
-    code = None
-
-    def __init__(self, timestamp: datetime.datetime.timestamp, *, prefix: str = ""):
+    def __init__(self, timestamp: TimeStamp, *, prefix: str = ""):
         if timestamp < 0:
             raise ValueError("timestamp must be positive")
         self.prefix = prefix
@@ -112,7 +111,7 @@ class VUID:
         return f"{self.prefix}{self.code}"
 
     def __repr__(self) -> str:
-        return f"VUID(\"{self.prefix}{self.code}\")"
+        return f'VUID("{self.prefix}{self.code}")'
 
     def __eq__(self, other) -> bool:
         return self.code == other.code
@@ -137,13 +136,11 @@ class VUID:
 
     @property
     def created_time(self) -> datetime.datetime:
-        return datetime.datetime.fromtimestamp(
-            _saturate(self.code[0:5]) + START_EPOC_TIME
-        )
+        return datetime.datetime.fromtimestamp(_saturate(self.code[0:5]) + START_EPOC_TIME)
 
     @classmethod
     def from_code(cls, code: str) -> "VUID":
-        if len(code) <= 9:
+        if len(code) < 9:
             raise ValueError("code must be gte 9 characters")
         obj = cls.__new__(cls)
         obj.code = code[-9:]
