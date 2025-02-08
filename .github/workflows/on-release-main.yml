@@ -44,4 +44,4 @@ jobs:
         uses: ./.github/actions/setup-uv-env
 
       - name: Deploy documentation
-        run: uv tool run mkdocs gh-deploy --force
+        run: make deploy-docs

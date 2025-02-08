@@ -46,6 +46,10 @@ docs-test: ## Test if documentation can be built without warnings or errors
 docs: ## Build and serve the documentation
 	@uv run mkdocs serve
 
+.PHONY: deploy-doc
+deploy-docs: ## Build and serve the documentation
+	@uvx mkdocs gh-deploy --force
+
 .PHONY: help
 help:
 	@uv run python -c "import re; \
