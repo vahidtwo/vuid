@@ -1,10 +1,10 @@
-site_name: skylog-sdk
-repo_url: https://github.com/vahidtwo/skylog-sdk
-site_url: https://vahidtwo.github.io/skylog-sdk
+site_name: vuid
+repo_url: https://github.com/vahidtwo/vuid
+site_url: https://vahidtwo.github.io/vuid
 site_description: This is a template repository for Python projects that use Poetry for their dependency management.
 site_author: vahidtwo
 edit_uri: edit/main/docs/
-repo_name: vahidtwo/skylog-sdk
+repo_name: vahidtwo/vuid
 copyright: Maintained by <a href="https://vahidtwo.com">Florian</a>.
 
 nav:
@@ -12,24 +12,10 @@ nav:
 plugins:
   search: null
   mkdocstrings:
+    default_handler: python
     handlers:
       python:
-        options:
-          extensions:
-            - griffe_typingdoc
-          show_root_heading: true
-          show_if_no_docstring: true
-          preload_modules: [httpx, starlette]
-          inherited_members: true
-          members_order: source
-          separate_signature: true
-          unwrap_annotated: true
-          filters: ["!^_"]
-          merge_init_into_class: true
-          docstring_section_style: spacy
-          signature_crossrefs: true
-          show_symbol_type_heading: true
-          show_symbol_type_toc: true
+        paths: [src]
 theme:
   name: material
   palette:
@@ -65,9 +51,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/vahidtwo/skylog-sdk
+      link: https://github.com/vahidtwo/vuid
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/skylog-sdk
+      link: https://pypi.org/project/vuid
   analytics:
     provider: google
 
