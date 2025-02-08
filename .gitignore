@@ -3,4 +3,4 @@
 venv/
 dist/
 .idea
-.site/
+site/

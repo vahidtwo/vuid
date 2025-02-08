@@ -14,7 +14,7 @@ check: ## Run code quality tools.
 	@echo "🚀 Static type checking: Running mypy"
 	@uvx mypy vuid/
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
-	@uv run deptry .
+	@uvx  deptry .
 
 .PHONY: test
 test: ## Test the code with pytest
@@ -42,7 +42,7 @@ build-and-publish: build publish ## Build and publish.
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@uv run mkdocs build -s
+	@mkdocs build -s
 
 .PHONY: docs
 docs: ## Build and serve the documentation
