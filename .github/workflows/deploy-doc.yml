@@ -1,0 +1,28 @@
+name: Release Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy the documentation"
+        required: false
+        default: "production"
+
+jobs:
+  deploy-docs:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-uv-env
+
+      - name: Deploy documentation
+        run: make deploy-docs
