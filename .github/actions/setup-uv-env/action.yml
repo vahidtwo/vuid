@@ -15,14 +15,9 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: Install uv
-      uses: astral-sh/setup-uv@v1
-      with:
-        virtualenvs-in-project: true
+      uses: astral-sh/setup-uv@v5
 
     - name: Set up Python environment with uv
-      run: make install
-      shell: bash
-
-    - name: Run tests
-      run: make test
+      run: |
+        make install
       shell: bash
