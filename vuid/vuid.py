@@ -107,13 +107,13 @@ class VUID:
         self.prefix = prefix
         self.code = generate_vuid(timestamp)
         self._extra = _dehydrate(extra) if extra else None
-        self.txt = f"{self.prefix}{self.code}{self._extra}"
+        self.txt = f"{self.prefix}{self._extra}{self.code}"
 
     def __str__(self) -> str:
         return f"{self.txt}"
 
     def __repr__(self) -> str:
-        return f"VUID(prefix={self.prefix}, extra={self._extra}, code={self.code})"
+        return f"VUID(prefix={self.prefix}, extra={self.extra}, code={self.code})"
 
     def __eq__(self, other) -> bool:
         return self.code == other.code
