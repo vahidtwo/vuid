@@ -1,7 +1,7 @@
 import datetime
 import logging
 import random
-from typing import TypeVar
+from typing import TypeVar, Optional
 import math
 
 CHARSET_DEFAULT = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -101,7 +101,7 @@ def generate_vuid(timestamp: TimeStamp) -> str:
 
 
 class VUID:
-    def __init__(self, timestamp: int, *, prefix: str = "", extra: int | None = None):
+    def __init__(self, timestamp: int, *, prefix: str = "", extra: Optional[int] = None):
         if timestamp < 0:
             raise ValueError("timestamp must be positive")
         self.prefix = prefix
@@ -141,13 +141,13 @@ class VUID:
         return datetime.datetime.fromtimestamp(_saturate(self.code[0:5]) + START_EPOC_TIME)
 
     @property
-    def extra(self) -> int | None:
+    def extra(self) -> Optional[int]:
         if self._extra is None:
             return None
         return _saturate(self._extra)
 
     @classmethod
-    def from_code(cls, code: str, *, extra_index: int | None = None) -> "VUID":
+    def from_code(cls, code: str, *, extra_index: Optional[int] = None) -> "VUID":
         if len(code) < 9:
             raise ValueError("code must be gte 9 characters")
         obj = cls.__new__(cls)
