@@ -4,3 +4,4 @@ venv/
 dist/
 .idea/
 site/
+*.pyc
