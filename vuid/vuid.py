@@ -101,23 +101,25 @@ def generate_vuid(timestamp: TimeStamp) -> str:
 
 
 class VUID:
-    def __init__(self, timestamp: TimeStamp, *, prefix: str = ""):
+    def __init__(self, timestamp: int, *, prefix: str = "", extra: int | None = None):
         if timestamp < 0:
             raise ValueError("timestamp must be positive")
         self.prefix = prefix
         self.code = generate_vuid(timestamp)
+        self._extra = _dehydrate(extra) if extra else None
+        self.txt = f"{self.prefix}{self.code}{self._extra}"
 
     def __str__(self) -> str:
-        return f"{self.prefix}{self.code}"
+        return f"{self.txt}"
 
     def __repr__(self) -> str:
-        return f'VUID("{self.prefix}{self.code}")'
+        return f"VUID(prefix={self.prefix}, extra={self._extra}, code={self.code})"
 
     def __eq__(self, other) -> bool:
         return self.code == other.code
 
     def __hash__(self):
-        return hash(f"{self.prefix}{self.code}")
+        return self.txt
 
     def __lt__(self, other) -> bool:
         return self.code < other.code
@@ -138,11 +140,22 @@ class VUID:
     def created_time(self) -> datetime.datetime:
         return datetime.datetime.fromtimestamp(_saturate(self.code[0:5]) + START_EPOC_TIME)
 
+    @property
+    def extra(self) -> int | None:
+        if self._extra is None:
+            return None
+        return _saturate(self._extra)
+
     @classmethod
-    def from_code(cls, code: str) -> "VUID":
+    def from_code(cls, code: str, *, extra_index: int | None = None) -> "VUID":
         if len(code) < 9:
             raise ValueError("code must be gte 9 characters")
         obj = cls.__new__(cls)
         obj.code = code[-9:]
-        obj.prefix = code[:-9]
+        if extra_index is not None:
+            obj.prefix = code[:extra_index]
+            obj._extra = code[extra_index:-9]
+        else:
+            obj.prefix = code[:-9]
+            obj._extra = None
         return obj

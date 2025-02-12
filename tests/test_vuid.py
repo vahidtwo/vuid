@@ -4,7 +4,7 @@ from vuid.vuid import VUID, START_EPOC_TIME, generate_vuid, _saturate, _dehydrat
 
 # Test data
 TEST_TIMESTAMP = datetime.now().timestamp()
-TEST_CODE = "1A2b3C4d5"
+TEST_CODE = "CS21A2b3C4d5"
 
 
 def test_generate_vuid():
@@ -20,7 +20,7 @@ def test_vuid_creation():
     """
     Test the `VUID` class initialization with a timestamp.
     """
-    vuid = VUID(TEST_TIMESTAMP)
+    vuid = VUID(TEST_TIMESTAMP, prefix="C", extra=1738)
     assert isinstance(vuid.code, str)
     assert len(vuid.code) == 9
 
@@ -29,8 +29,19 @@ def test_vuid_from_code():
     """
     Test creating a `VUID` object from an existing code.
     """
-    vuid = VUID.from_code(TEST_CODE)
-    assert vuid.code == TEST_CODE
+    vuid = VUID.from_code(TEST_CODE, extra_index=1)
+    assert vuid.code == TEST_CODE[3:]
+    assert vuid.prefix == "C"
+    assert vuid.extra == 1738
+
+
+def test_vuid_extra_int():
+    """
+    Test creating a `VUID` object from an existing code.
+    """
+    test_extra = 123
+    vuid = VUID(TEST_TIMESTAMP, extra=test_extra)
+    assert vuid.extra == test_extra
 
 
 def test_vuid_created_time():

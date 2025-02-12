@@ -1,15 +1,13 @@
-<style>
-.md-grid {
-  max-width: 200rem;
-}
-</style>
-
 # VUID Package
 
 [![Release](https://img.shields.io/github/v/release/vahidtwo/vuid)](https://img.shields.io/github/v/release/vahidtwo/vuid)
 [![Build status](https://img.shields.io/github/actions/workflow/status/vahidtwo/vuid/main.yml?branch=master)](https://github.com/vahidtwo/vuid/actions/workflows/main.yml?query=branch%3Amaster)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)
 [![License](https://img.shields.io/github/license/vahidtwo/vuid)](https://img.shields.io/github/license/vahidtwo/vuid)
+
+- **Github repository**: <https://github.com/vahidtwo/vuid/>
+- **Documentation** <https://vahidtwo.github.io/vuid/>
+- **PIPY Package** <https://pypi.org/project/vuid/>
 
 The **VUID** is a Python package designed to generate vahid unique identifiers (VUIDs) based on a custom epoch time
 and a base-62 encoding scheme. The package provides a simple and efficient way to create unique IDs that can be used in
@@ -29,9 +27,11 @@ various applications, such as database keys, distributed systems, or any scenari
 
 To install the package, use pip:
 
+<div class="termy">
 ```bash
 pip install vuid
 ```
+</div>
 
 ## Usage
 
@@ -39,16 +39,34 @@ pip install vuid
 
 To generate a unique VUID, simply create an instance of the `VUID` class with a timestamp:
 
-```python
-from datetime import datetime
-from vuid import VUID
+!!! example "Usage Example"
 
-# Generate a VUID using the current time
-timestamp = datetime.now().timestamp()
-vuid = VUID(timestamp)
+    === "Simple"
+        <div style="font-size: 20px;">
+        ```py linenums="1"
+          from datetime import datetime
+          from vuid import VUID
 
-print(vuid)  # Example output: "1A2b3C4d5"
-```
+          # Generate a VUID using the current time
+          timestamp = datetime.now().timestamp()
+          vuid = VUID(timestamp)
+
+          print(vuid)  # Example output: "1A2b3C4d5"
+        ```
+        </div>
+    === "Advance"
+        <div style="font-size: 20px;">
+        ```py linenums="1"
+          from datetime import datetime
+          from vuid import VUID
+
+          # Generate a VUID using the current time
+          timestamp = datetime.now().timestamp()
+          vuid = VUID(timestamp, prefix='C', extra=1738)
+
+          print(vuid)  # Example output: "CS21A2b3C4d5"
+        ```
+        </div>
 
 ### Extracting the Creation Time
 
@@ -64,10 +82,12 @@ print(creation_time)  # Example output: "2025-01-04 12:04:08"
 If you already have a VUID code, you can create a `VUID` object from it:
 
 ```python
-existing_code = "1A2b3C4d5"
+existing_code = "CS21A2b3C4d5"
 vuid = VUID.from_code(existing_code)
 
 print(vuid.created_time)  # Output: "2025-07-22 05:24:09"
+print(vuid.extra)  # Output: 1738
+print(vuid.prefix)  # Output: "C"
 ```
 
 ### Comparing VUIDs
@@ -84,22 +104,25 @@ print(vuid1 < vuid2)  # True or False, depending on the timestamps
 
 ## API Reference
 
-### `VUID(timestamp: int, *, prefix: str = "")`
+### `VUID(timestamp: int, *, prefix: str = "", extra: int = None)`
 
 - **Parameters**:
   - `timestamp`: A timestamp (in seconds) used to generate the VUID.
   - `prefix`: A string used to add as prefix in the VUID.
+  - `extra`: An integer to save extra info in the VUID.
 - **Returns**: A `VUID` object.
 
-### `VUID.from_code(code: str)`
+### `VUID.from_code(code: str, *, extra_index: int | None = None)`
 
 - **Parameters**:
   - `code`: An existing VUID code.
+  - `extra_index`: if you have put extra **you must** the start index of the extra.
 - **Returns**: A `VUID` object.
 
 ### Properties
 
-- `code`: Returns the VUID as a string.
+- `code`: Returns the code as a string.
+- `extra`: Returns the extra as an integer.
 - `created_time`: Returns the creation time of the VUID as a `datetime` object.
 
 ### Methods

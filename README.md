@@ -62,10 +62,12 @@ print(creation_time)  # Example output: "2025-01-04 12:04:08"
 If you already have a VUID code, you can create a `VUID` object from it:
 
 ```python
-existing_code = "1A2b3C4d5"
+existing_code = "CS21A2b3C4d5"
 vuid = VUID.from_code(existing_code)
 
 print(vuid.created_time)  # Output: "2025-07-22 05:24:09"
+print(vuid.extra)  # Output: 1738
+print(vuid.prefix)  # Output: "C"
 ```
 
 ### Comparing VUIDs
@@ -82,22 +84,25 @@ print(vuid1 < vuid2)  # True or False, depending on the timestamps
 
 ## API Reference
 
-### `VUID(timestamp: int, *, prefix: str = "")`
+### `VUID(timestamp: int, *, prefix: str = "", extra: int = None)`
 
 - **Parameters**:
   - `timestamp`: A timestamp (in seconds) used to generate the VUID.
   - `prefix`: A string used to add as prefix in the VUID.
+  - `extra`: An integer to save extra info in the VUID.
 - **Returns**: A `VUID` object.
 
-### `VUID.from_code(code: str)`
+### `VUID.from_code(code: str, *, extra_index: int | None = None)`
 
 - **Parameters**:
   - `code`: An existing VUID code.
+  - `extra_index`: if you have put extra **you must** the start index of the extra.
 - **Returns**: A `VUID` object.
 
 ### Properties
 
-- `code`: Returns the VUID as a string.
+- `code`: Returns the code as a string.
+- `extra`: Returns the extra as an integer.
 - `created_time`: Returns the creation time of the VUID as a `datetime` object.
 
 ### Methods
