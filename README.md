@@ -5,6 +5,11 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)](https://img.shields.io/github/commit-activity/m/vahidtwo/vuid)
 [![License](https://img.shields.io/github/license/vahidtwo/vuid)](https://img.shields.io/github/license/vahidtwo/vuid)
 
+
+![Python](https://img.shields.io/pypi/pyversions/VUID?style=flat-square)
+[![Downloads](https://static.pepy.tech/badge/VUID?style=flat-square)](https://pepy.tech/project/YOUR_PACKAGE_NAME)
+
+
 - **Github repository**: <https://github.com/vahidtwo/vuid/>
 - **Documentation** <https://vahidtwo.github.io/vuid/>
 - **PIPY Package** <https://pypi.org/project/vuid/>
