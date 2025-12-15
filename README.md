@@ -6,8 +6,8 @@
 [![License](https://img.shields.io/github/license/vahidtwo/vuid)](https://img.shields.io/github/license/vahidtwo/vuid)
 
 
-![Python](https://img.shields.io/pypi/pyversions/VUID?style=flat-square)
-[![Downloads](https://static.pepy.tech/badge/VUID?style=flat-square)](https://pepy.tech/project/YOUR_PACKAGE_NAME)
+![Python](https://img.shields.io/pypi/pyversions/vuid?style=flat-square)
+[![Downloads](https://static.pepy.tech/badge/vuid?style=flat-square)](https://pepy.tech/project/vuid)
 
 
 - **Github repository**: <https://github.com/vahidtwo/vuid/>
